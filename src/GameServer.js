@@ -40,11 +40,11 @@ function GameServer() {
         serverOldColors: 0,// If the server uses colors from the original Ogar
 		serverBots: 3, // Amount of player bots to spawn (Experimental)
 	    rainbowCells: 0,
-        serverViewBase: 1024, // Base view distance of players. Warning: high values may cause lag
+        serverViewBase: 768, // Base view distance of players. Warning: high values may cause lag
         borderLeft: 0, // Left border of map (Vanilla value: 0)
-        borderRight: 6000, // Right border of map (Vanilla value: 11180.3398875)
+        borderRight: 12000, // Right border of map (Vanilla value: 11180.3398875)
         borderTop: 0, // Top border of map (Vanilla value: 0)
-        borderBottom: 6000, // Bottom border of map (Vanilla value: 11180.3398875)
+        borderBottom: 12000, // Bottom border of map (Vanilla value: 11180.3398875)
         spawnInterval: 20, // The interval between each food cell spawn in ticks (1 tick = 50 ms)
         foodSpawnAmount: 10, // The amount of food to spawn per interval
         foodStartAmount: 100, // The starting amount of food in the map
@@ -52,26 +52,26 @@ function GameServer() {
         foodMass: 1, // Starting food size (In mass)
 	//foodMaxMass: 4,
         virusMinAmount: 10, // Minimum amount of viruses on the map. 
-        virusMaxAmount: 50, // Maximum amount of viruses on the map. If this amount is reached, then ejected cells will pass through viruses.
-        virusStartMass: 100, // Starting virus size (In mass)
-        virusBurstMass: 198, // Viruses explode past this size
-        ejectMass: 16, // Mass of ejected cells
-        ejectMassGain: 12, // Amount of mass gained from consuming ejected cells
+        virusMaxAmount: 20, // Maximum amount of viruses on the map. If this amount is reached, then ejected cells will pass through viruses.
+        virusStartMass: 40, // Starting virus size (In mass)
+        virusBurstMass: 98, // Viruses explode past this size
+        ejectMass: 4, // Mass of ejected cells
+        ejectMassGain: 6, // Amount of mass gained from consuming ejected cells
         ejectSpeed: 160, // Base speed of ejected cells
-        ejectSpawnPlayer: 50, // Chance for a player to spawn from ejected mass
-        playerStartMass: 10, // Starting mass of the player cell.
+        ejectSpawnPlayer: 0, // Chance for a player to spawn from ejected mass
+        playerStartMass: 30, // Starting mass of the player cell.
         playerMaxMass: 22500, // Maximum mass a player can have
-        playerMinMassEject: 32, // Mass required to eject a cell
-        playerMinMassSplit: 36, // Mass required to split
+        playerMinMassEject: 40, // Mass required to eject a cell
+        playerMinMassSplit: 60, // Mass required to split
         playerMaxCells: 16, // Max cells the player is allowed to have
-        playerRecombineTime: 15, // Base amount of ticks before a cell is allowed to recombine (1 tick = 2000 milliseconds)
-        playerMassDecayRate: 4, // Amount of mass lost per tick (Multiplier) (1 tick = 2000 milliseconds)
-        playerMinMassDecay: 9, // Minimum mass for decay to occur
+        playerRecombineTime: 11, // Base amount of ticks before a cell is allowed to recombine (1 tick = 2000 milliseconds)
+        playerMassDecayRate: 3, // Amount of mass lost per tick (Multiplier) (1 tick = 2000 milliseconds)
+        playerMinMassDecay: 200, // Minimum mass for decay to occur
         leaderboardUpdateClient: 40, // How often leaderboard data is sent to the client (1 tick = 50 milliseconds)
 	  //  serverSubdomain: 'marios-best-game',
 	    ejectVirus: 0,
-	    serverTitle: 'Ogar3',
-	    serverPlaceholder: 'Nick'
+	    serverTitle: 'Cell Wars 2020',
+	    serverPlaceholder: 'Nickname'
     };
     // Parse config
     this.loadConfig();
@@ -1021,7 +1021,7 @@ GameServer.prototype.getCellsInRange = function(cell) {
         }
 
         // Cell type check - Cell must be bigger than this number times the mass of the cell being eaten
-        var multiplier = 1.25;
+        var multiplier = 1.10;
 		
         switch (check.getType()) {
             case 1: // Food cell
@@ -1031,7 +1031,7 @@ GameServer.prototype.getCellsInRange = function(cell) {
                 multiplier = 1.33;
                 break;
             case 0: // Players
-                multiplier = check.owner == cell.owner ? 1.00 : multiplier;
+                multiplier = check.owner == cell.owner ? 1.10 : multiplier;
                 // Can't eat team members
                 if (this.gameMode.haveTeams) {
                     if (!check.owner) { // Error check
@@ -1075,7 +1075,7 @@ GameServer.prototype.getCellsInRange = function(cell) {
 GameServer.prototype.getNearestVirus = function(cell) { 
 	// More like getNearbyVirus
 	var virus = null;
-    var r = 100; // Checking radius
+    var r = 40; // Checking radius
 	
     var topY = cell.position.y - r;
     var bottomY = cell.position.y + r;
