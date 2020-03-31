@@ -51,7 +51,7 @@
             mouseCoordinateChange();
             sendMouseMove()
         };*/
-        mainCanvas.mousedown(function(event) {
+        /*mainCanvas.mousedown(function(event) {
             switch (event.which) {
                 case 1:
                     GameServer.splitCells();
@@ -65,7 +65,7 @@
                 default:
                     console.log("You have not clicked me yet!");
             }
-        });
+        });*/
         mainCanvas.onmousemove = function (event) {
             rawMouseX = event.clientX;
             rawMouseY = event.clientY;
