@@ -148,6 +148,32 @@
                     break;
             }
         };
+        //***********************************************************
+        // Adding Mouse functionality for ejecting mass and splitting
+        //Prevent right-click from opening context menu
+        wHandle.addEventListener("contextmenu", e => e.preventDefault());
+
+        wHandle.mousedown(function(event) {
+            switch (event.which) {
+                case 1: //split cells - left mouse button click
+                    sendMouseMove();
+                    sendUint8(17);
+                    break;
+                case 2: // scroll wheel when clicked
+                    console.log("Middle Mouse button pressed.");
+                    break;
+                case 3: // eject mass - right mouse button click
+                    sendMouseMove();
+                    sendUint8(21);
+                    break;
+                default:
+                    console.log("You have not clicked me yet!");
+            }
+        });
+
+        // END of MOUSEFunctionality Code
+        //**********************************
+
         wHandle.onblur = function () {
             sendUint8(19);
             wPressed = qPressed = spacePressed = false
@@ -210,7 +236,7 @@
 
         for(var i = 0; i<e.changedTouches.length; i++){
             var touch =e.changedTouches[i];
-            if(leftTouchID == touch.identifier)
+            if(leftTouchID === touch.identifier)
             {
                 leftTouchPos.reset(touch.clientX, touch.clientY);
                 leftVector.copyFrom(leftTouchPos);
@@ -232,7 +258,7 @@
 
         for(var i = 0; i<e.changedTouches.length; i++){
             var touch =e.changedTouches[i];
-            if(leftTouchID == touch.identifier)
+            if(leftTouchID === touch.identifier)
             {
                 leftTouchID = -1;
                 leftVector.reset(0,0);
@@ -524,7 +550,7 @@
                 posX = (rightPos + leftPos) / 2;
                 posY = (bottomPos + topPos) / 2;
                 posSize = 1;
-                if (0 == playerCells.length) {
+                if (0 === playerCells.length) {
                     nodeX = posX;
                     nodeY = posY;
                     viewZoom = posSize;
@@ -545,7 +571,7 @@
         function getString() {
             var text = '',
                 char;
-            while ((char = view.getUint16(offset, true)) != 0) {
+            while ((char = view.getUint16(offset, true)) !== 0) {
                 offset += 2;
                 text += String.fromCharCode(char);
             }
@@ -758,7 +784,7 @@
     }
 
     function wsIsOpen() {
-        return null != ws && ws.readyState == ws.OPEN
+        return null != ws && ws.readyState === ws.OPEN
     }
 
     function sendUint8(a) {
