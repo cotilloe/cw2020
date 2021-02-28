@@ -34,7 +34,7 @@
         setInterval(getServerList, 18E4);
         mainCanvas = nCanvas = document.getElementById("canvas");
         ctx = mainCanvas.getContext("2d");
-       /** mainCanvas.onmousedown = function (event) {
+        /*mainCanvas.onmousedown = function (event) {
             if (isTouchStart) {
                 var xOffset = event.clientX - (5 + canvasWidth / 5 / 2),
                     yOffset = event.clientY - (5 + canvasWidth / 5 / 2);
@@ -51,21 +51,6 @@
             mouseCoordinateChange();
             sendMouseMove()
         };*/
-        /*mainCanvas.mousedown(function(event) {
-            switch (event.which) {
-                case 1:
-                    GameServer.splitCells();
-                    break;
-                case 2:
-                    console.log("Middle Mouse button pressed.");
-                    break;
-                case 3:
-                    GameServer.ejectMass();
-                    break;
-                default:
-                    console.log("You have not clicked me yet!");
-            }
-        });*/
         mainCanvas.onmousemove = function (event) {
             rawMouseX = event.clientX;
             rawMouseY = event.clientY;
