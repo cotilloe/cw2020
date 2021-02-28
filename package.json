@@ -1,0 +1,32 @@
+{
+  "name": "cryptosis",
+  "version": "1.0.0",
+  "description": "Open source Agar.io server",
+  "main": "index.js",
+  "dependencies": {
+    "burrow": "0.0.0",
+    "finalhandler": "^0.3.6",
+    "serve-static": "^1.9.3",
+    "ws": "^3.3.1",
+    "localtunnel": "2.0.0",
+    "portfinder": "1.0.28"
+  },
+  "engines": {
+    "node": "10.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js --game",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cotilloe/cw2020"
+  },
+  "author": "@G.C.",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/cotilloe/cw2020/issues"
+  },
+  "homepage": "https://github.com/cotilloe/"
+}
