@@ -1,17 +1,28 @@
-# Cell Wars 202
-An open source Agar.io server implementation, written in Node.js. Clone of original by [@Faris90](https://github.com/Faris90/Ogar3)
+# Ogar3
+An open source Agar.io server implementation, written in Node.js.
 ## THIS IS CURRENTLY IN THE MAKING
 ## Project Status
-Changes/Features I have made/planning on making:
+The project is nearly complete. Here's a rough list of what's been done and what needs to be done:
 
-- [ ] Adding Mouse Controls for split and eject.
-- [ ] Adding Prizes for time as largest/wins/etc...
-- [ ] Tracking stats for each player and saving cumulative.
-- [ ] Adding more game modes.
-- [ ] Creating power-ups and store.
+- [x] Master server basic implementation
+- [x] Game server basic implementation (clients can connect)
+- [x] Single-cell movement
+- [x] Randomly generated cells and viruses
+- [x] Ejecting mass
+- [x] Splitting
+- [x] Multi-cell player movement
+- [x] Cells eating other cells
+- [x] Leaderboard
+- [x] Team mode
+- [x] Spectate mode
+- [ ] Multi-Server support
+- [ ] Server publishing
+- [ ] Server Tracking
+
+
 
 ## How to access server
-Go to localhost if you set the port to 443 go to localhost:443
+Go to localhost if you set the port to 80 go to localhost:80
 Demo: [Click here for demo](https://ogar3-demo.herokuapp.com/)
 ## Obtaining and Using
 If you are on Windows, Ogar3 no longer requires an installation of node.js to run. Simply launch the batch file that is included to run the server. This is a beta feature, and if there are any problems, switch back to using Ogar3 with node.js. The rest of this section is for non Windows users.
